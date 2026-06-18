@@ -1,0 +1,26 @@
+# Token do bot Telegram (NUNCA commitar)
+.env
+bot_token.txt
+bot_telegram.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+venv/
+
+# Database e dados de usuario
+instance/
+*.db
+
+# Materiais upados
+materiais/
+
+# QRs gerados
+assets/img/qr_pix_*.png
+assets/img/test_qr.png
+
+# OS
+Thumbs.db
+.DS_Store

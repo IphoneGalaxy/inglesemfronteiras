@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel — EnglishFlow</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0F172A; --card: #1E293B; --text: #F1F5F9; --soft: #94A3B8;
+      --primary: #3390EC; --primary-light: rgba(51,144,236,0.1); --border: #334155;
+      --muted: #64748B; --gold: #FFD700; --green: #22C55E;
+    }
+    [data-theme="light"] {
+      --bg: #F1F5F9; --card: #FFFFFF; --text: #0F172A; --soft: #475569;
+      --border: #E2E8F0; --muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text);
+      min-height: 100vh; -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header */
+    .panel-header {
+      background: var(--card); border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem; display: flex; align-items: center;
+      justify-content: space-between; position: sticky; top: 0; z-index: 10;
+    }
+    .panel-header__left { display: flex; align-items: center; gap: 0.75rem; }
+    .panel-header__logo { font-size: 1.5rem; }
+    .panel-header__title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.1rem; }
+    .panel-header__user { font-size: 0.85rem; color: var(--soft); }
+    .panel-header__plan {
+      background: var(--primary); color: #fff; padding: 0.3rem 0.8rem;
+      border-radius: 1rem; font-size: 0.75rem; font-weight: 600;
+    }
+    .panel-logout {
+      color: var(--soft); text-decoration: none; font-size: 0.85rem;
+      padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 1.5rem;
+      transition: all .2s;
+    }
+    .panel-logout:hover { border-color: var(--primary); color: var(--primary); }
+
+    /* Content */
+    .panel-content {
+      max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem;
+    }
+    .panel-welcome {
+      margin-bottom: 2rem;
+    }
+    .panel-welcome h2 {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 1.8rem; margin-bottom: 0.5rem;
+    }
+    .panel-welcome p { color: var(--soft); line-height: 1.6; }
+
+    /* Materials grid */
+    .materials-grid {
+      display: grid; grid-template-columns: 1fr; gap: 1rem;
+    }
+    @media (min-width: 640px) { .materials-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .materials-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .material-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 1rem; padding: 1.5rem; transition: all .2s;
+      display: flex; flex-direction: column; gap: 0.75rem;
+      position: relative;
+    }
+    .material-card:hover {
+      border-color: var(--primary); box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      transform: translateY(-2px);
+    }
+    .material-card__icon {
+      font-size: 2rem; width: 3rem; height: 3rem; border-radius: 0.75rem;
+      background: var(--primary-light); display: flex; align-items: center;
+      justify-content: center;
+    }
+    .material-card__title {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1rem;
+    }
+    .material-card__desc { color: var(--soft); font-size: 0.85rem; line-height: 1.5; }
+    .material-card__meta {
+      display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem;
+      color: var(--muted); margin-top: auto;
+    }
+    .material-card__type {
+      background: var(--primary-light); color: var(--primary);
+      padding: 0.2rem 0.6rem; border-radius: 0.5rem; font-weight: 500;
+    }
+    .material-card__btn {
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 0.7rem; background: var(--primary); color: #fff; border: none;
+      border-radius: 1.5rem; font-weight: 600; font-size: 0.9rem; cursor: pointer;
+      text-decoration: none; transition: all .2s; font-family: 'Inter', sans-serif;
+      margin-top: 0.5rem;
+    }
+    .material-card__btn:hover {
+      background: #2A7DD4; box-shadow: 0 4px 15px rgba(51,144,236,0.4);
+    }
+
+    .empty-state {
+      text-align: center; padding: 4rem 2rem; color: var(--soft);
+    }
+    .empty-state__icon { font-size: 4rem; margin-bottom: 1rem; }
+    .empty-state__text { font-size: 1.1rem; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <header class="panel-header">
+    <div class="panel-header__left">
+      <span class="panel-header__logo">💬</span>
+      <div>
+        <div class="panel-header__title">EnglishFlow</div>
+        <div class="panel-header__user">{{ user.name }}</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:0.75rem;">
+      <span class="panel-header__plan">
+        {{ 'BASICO' if user.plan == 'basico' else 'PRO' if user.plan == 'pro' else 'PREMIUM' }}
+      </span>
+      <button onclick="toggleTheme()" style="background:var(--bg);border:1px solid var(--border);border-radius:1.5rem;width:2.5rem;height:2.5rem;cursor:pointer;font-size:1rem;">🌓</button>
+      <a href="/logout" class="panel-logout">Sair</a>
+    </div>
+  </header>
+
+  <main class="panel-content">
+    <div class="panel-welcome">
+      <h2>👋 Ola, {{ user.name.split()[0] }}!</h2>
+      <p>Bem-vindo ao seu painel de estudos. Aqui voce encontra todos os materiais do seu plano.</p>
+      <p style="margin-top:0.5rem;font-size:0.8rem;color:var(--muted);">
+        📌 Plano: <strong>{{ user.plan.upper() }}</strong> &nbsp;|&nbsp;
+        🔑 Codigo: <strong>{{ user.access_code }}</strong>
+      </p>
+      <!-- Progress bar -->
+      <div style="margin-top:1.25rem;background:var(--bg);border-radius:0.5rem;padding:1rem;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+          <span style="font-weight:600;font-size:0.9rem;">📊 Seu progresso</span>
+          <span style="font-size:0.8rem;color:var(--primary);">{{ progress.pct }}%</span>
+        </div>
+        <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden;">
+          <div style="width:{{ progress.pct }}%;height:100%;background:var(--green);border-radius:4px;transition:width 0.5s;"></div>
+        </div>
+        <span style="font-size:0.75rem;color:var(--muted);">{{ progress.done }}/{{ progress.total }} materiais concluidos</span>
+      </div>
+      <div style="margin-top:0.75rem;">
+        <a href="/certificado" style="color:var(--gold);font-size:0.85rem;text-decoration:none;font-weight:500;">🎓 Ver meu certificado</a>
+      </div>
+    </div>
+
+    {% if materials %}
+    <div class="materials-grid">
+      {% for m in materials %}
+      <article class="material-card">
+        <div class="material-card__icon">
+          {% if m.file_type == 'pdf' %}📄
+          {% elif m.file_type == 'video' %}🎬
+          {% elif m.file_type == 'audio' %}🎧
+          {% elif m.file_type == 'image' %}🖼️
+          {% else %}📁{% endif %}
+        </div>
+        {% if m.id in completed %}
+        <span style="position:absolute;top:0.75rem;right:0.75rem;font-size:1.2rem;" title="Concluido">✅</span>
+        {% endif %}
+        <h3 class="material-card__title">{{ m.title }}</h3>
+        {% if m.description %}
+        <p class="material-card__desc">{{ m.description[:120] }}{% if m.description|length > 120 %}...{% endif %}</p>
+        {% endif %}
+        <div class="material-card__meta">
+          <span class="material-card__type">{{ m.file_type.upper() }}</span>
+          <span>{{ m.created_at[:10] }}</span>
+        </div>
+        <a href="/download/{{ m.id }}" class="material-card__btn" {{ 'download' if m.file_type != 'video' else '' }}>
+          {{ '⬇ Baixar' if m.file_type != 'video' else '▶ Assistir' }}
+        </a>
+        {% if m.id in completed %}
+        <a href="/toggle/{{ m.id }}" style="text-align:center;padding:0.4rem;color:var(--muted);text-decoration:none;font-size:0.8rem;border-radius:0.5rem;border:1px solid var(--border);">✅ Concluido — desmarcar</a>
+        {% else %}
+        <a href="/toggle/{{ m.id }}" style="text-align:center;padding:0.4rem;color:var(--primary);text-decoration:none;font-size:0.8rem;border-radius:0.5rem;border:1px solid var(--primary);">☐ Marcar como concluido</a>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+      <div class="empty-state__icon">📚</div>
+      <p class="empty-state__text">Nenhum material disponivel ainda.<br>Novos conteudos serao adicionados em breve!</p>
+    </div>
+    {% endif %}
+  </main>
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('englishflow-theme', next);
+    }
+    // Load saved theme
+    (function() {
+      const saved = localStorage.getItem('englishflow-theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
+</body>
+</html>

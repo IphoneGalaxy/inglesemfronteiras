@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — EnglishFlow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #0F172A; --card: #1E293B; --text: #F1F5F9; --soft: #94A3B8; --primary: #3390EC; --border: #334155; --gold: #FFD700; --green: #22C55E; --danger: #DC2626; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+    .dash-header { background: var(--card); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .dash-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; }
+    .dash-header a { color: var(--soft); text-decoration: none; font-size: 0.85rem; }
+    .dash-content { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem; text-align: center; }
+    .stat-card__value { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 2rem; color: var(--primary); }
+    .stat-card__label { font-size: 0.8rem; color: var(--soft); margin-top: 0.25rem; }
+    .stat-card--gold .stat-card__value { color: var(--gold); }
+    .stat-card--green .stat-card__value { color: var(--green); }
+
+    .section-card { background: var(--card); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem; margin-bottom: 1.5rem; }
+    .section-card h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; margin-bottom: 0.75rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th { text-align: left; color: var(--soft); font-weight: 500; padding: 0.5rem 0.5rem; border-bottom: 1px solid var(--border); }
+    td { padding: 0.5rem 0.5rem; border-bottom: 1px solid var(--border); }
+    tr:last-child td { border-bottom: none; }
+    .badge { padding: 0.2rem 0.6rem; border-radius: 0.5rem; font-size: 0.7rem; font-weight: 600; }
+    .badge-basico { background: rgba(51,144,236,0.15); color: #3390EC; }
+    .badge-pro { background: rgba(255,215,0,0.15); color: #FFD700; }
+    .badge-premium { background: rgba(220,38,38,0.15); color: #DC2626; }
+    .badge-todos { background: rgba(34,197,94,0.15); color: #22C55E; }
+  </style>
+</head>
+<body>
+  <header class="dash-header">
+    <h1>📊 Dashboard — EnglishFlow</h1>
+    <div style="display:flex;gap:1rem;">
+      <a href="/admin">Materiais</a>
+      <a href="/painel">Painel Aluno</a>
+      <a href="/">Site</a>
+    </div>
+  </header>
+
+  <main class="dash-content">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-card__value">{{ stats.total_users }}</div>
+        <div class="stat-card__label">Total de alunos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__value">{{ stats.total_materials }}</div>
+        <div class="stat-card__label">Materiais</div>
+      </div>
+      <div class="stat-card stat-card--gold">
+        <div class="stat-card__value">R$ {{ "%.2f"|format(stats.total_revenue) }}</div>
+        <div class="stat-card__label">Receita total</div>
+      </div>
+      <div class="stat-card stat-card--green">
+        <div class="stat-card__value">{{ stats.confirmed_payments }}</div>
+        <div class="stat-card__label">Pagamentos confirmados</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <h2>👥 Alunos por plano</h2>
+      <table>
+        <tr><th>Plano</th><th>Alunos</th></tr>
+        {% for p in stats.users_by_plan %}
+        <tr>
+          <td><span class="badge badge-{{ p.plan }}">{{ p.plan.upper() }}</span></td>
+          <td>{{ p.count }}</td>
+        </tr>
+        {% endfor %}
+        {% if not stats.users_by_plan %}
+        <tr><td colspan="2" style="color:var(--soft);">Nenhum aluno cadastrado.</td></tr>
+        {% endif %}
+      </table>
+    </div>
+
+    <div class="section-card">
+      <h2>🆕 Ultimos alunos</h2>
+      <table>
+        <tr><th>Nome</th><th>Plano</th><th>Codigo</th><th>Data</th></tr>
+        {% for u in stats.recent_users %}
+        <tr>
+          <td>{{ u.name }}</td>
+          <td><span class="badge badge-{{ u.plan }}">{{ u.plan.upper() }}</span></td>
+          <td><code>{{ u.access_code }}</code></td>
+          <td>{{ u.created_at[:10] }}</td>
+        </tr>
+        {% endfor %}
+        {% if not stats.recent_users %}
+        <tr><td colspan="4" style="color:var(--soft);">Nenhum aluno recente.</td></tr>
+        {% endif %}
+      </table>
+    </div>
+  </main>
+</body>
+</html>

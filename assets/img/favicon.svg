@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3390EC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2A7DD4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="url(#bg)"/>
+  <!-- Chat bubble -->
+  <path d="M30 35 Q30 28 37 28 L63 28 Q70 28 70 35 L70 52 Q70 59 63 59 L45 59 L35 68 L38 59 L37 59 Q30 59 30 52 Z" fill="white" opacity="0.95"/>
+  <!-- Star -->
+  <polygon points="50,18 54,32 68,34 57,44 60,58 50,50 40,58 43,44 32,34 46,32" fill="#FFD700"/>
+</svg>
