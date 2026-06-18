@@ -1,72 +1,111 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 — Página não encontrada | EnglishFlow</title>
-  <meta name="robots" content="noindex, follow">
-  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    .error-page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: var(--space-2xl);
-      gap: var(--space-lg);
-    }
-    .error-page__emoji {
-      font-size: 5rem;
-      animation: pulse 2s ease-in-out infinite;
-    }
-    .error-page__code {
-      font-family: var(--font-display);
-      font-size: 6rem;
-      font-weight: 700;
-      color: var(--color-primary);
-      line-height: 1;
-    }
-    .error-page__title {
-      font-family: var(--font-display);
-      font-size: var(--text-2xl);
-      color: var(--color-text);
-    }
-    .error-page__text {
-      color: var(--color-text-soft);
-      max-width: 400px;
-      line-height: 1.7;
-    }
-    .error-page__actions {
-      display: flex;
-      gap: var(--space-md);
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Não Encontrada | Inglês em Fronteiras</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
 </head>
-<body>
+<body class="error-page">
 
-<main class="error-page">
-  <div class="error-page__emoji" aria-hidden="true">💬</div>
-  <div class="error-page__code">404</div>
-  <h1 class="error-page__title">Oops! Essa conversa não existe.</h1>
-  <p class="error-page__text">
-    A página que você procura pode ter sido movida, deletada ou nunca existiu — assim como algumas conversas no Telegram 😅
-  </p>
-  <div class="error-page__actions">
-    <a href="index.html" class="btn btn--telegram btn--lg">
-      <span class="btn__icon">🏠</span>
-      Voltar ao início
-    </a>
-    <a href="https://t.me/inglesemfronteiras_bot" class="btn btn--outline btn--lg" target="_blank" rel="noopener">
-      <span class="btn__icon">💬</span>
-      Falar no Telegram
-    </a>
-  </div>
-</main>
+    <div class="error-container">
+        <div class="error-content">
+            <div class="error-code">
+                <span class="digit">4</span>
+                <div class="planet">
+                    <div class="planet-ring"></div>
+                    <div class="planet-body">🌍</div>
+                </div>
+                <span class="digit">4</span>
+            </div>
+            
+            <h1 class="error-title">Ops! Página não encontrada</h1>
+            <p class="error-description">
+                A página que você está procurando pode ter sido removida, teve seu nome alterado 
+                ou está temporariamente indisponível. Mas não se preocupe, vamos te ajudar a voltar aos trilhos!
+            </p>
+            
+            <div class="error-actions">
+                <a href="index.html" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 9L12 2L21 9V20C21 20.5523 20.5523 21 20 21H15V14H9V21H4C3.44772 21 3 20.5523 3 20V9Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Voltar para o início
+                </a>
+                <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="btn btn-outline">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.643.135-.953l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+                    </svg>
+                    Falar com o Professor
+                </a>
+            </div>
 
+            <div class="error-suggestions">
+                <h3>Talvez você esteja procurando por:</h3>
+                <div class="suggestion-list">
+                    <a href="painel.html" class="suggestion-card">
+                        <div class="suggestion-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 9L12 2L21 9V20C21 20.5523 20.5523 21 20 21H15V14H9V21H4C3.44772 21 3 20.5523 3 20V9Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Meu Painel</h4>
+                            <p>Acesse suas aulas e materiais</p>
+                        </div>
+                    </a>
+                    
+                    <a href="index.html#planos" class="suggestion-card">
+                        <div class="suggestion-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2"/>
+                                <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Planos</h4>
+                            <p>Conheça nossos planos</p>
+                        </div>
+                    </a>
+                    
+                    <a href="index.html#professor" class="suggestion-card">
+                        <div class="suggestion-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="8" r="6" stroke="currentColor" stroke-width="2"/>
+                                <path d="M15.477 12.89L17 22L12 19L7 22L8.523 12.89" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Professor Joab</h4>
+                            <p>Conheça seu professor</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="error-footer">
+                <p>Se você acredita que isso é um erro, entre em contato:</p>
+                <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="contact-link">
+                    @inglesemfronteiras_bot
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animação simples para o planeta
+        const planet = document.querySelector('.planet-body');
+        let rotation = 0;
+        
+        function animatePlanet() {
+            rotation += 0.5;
+            planet.style.transform = `rotate(${rotation}deg)`;
+            requestAnimationFrame(animatePlanet);
+        }
+        
+        animatePlanet();
+    </script>
 </body>
 </html>

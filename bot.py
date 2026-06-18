@@ -46,10 +46,7 @@ logger = logging.getLogger(__name__)
 
 # ---------- DATA (mock) ----------
 PROFESSORES = [
-    {"id": "sarah", "nome": "👩‍💼 Sarah Johnson", "especialidade": "Business English", "rating": "⭐ 4.9"},
-    {"id": "michael", "nome": "🧔 Michael Torres", "especialidade": "Conversação", "rating": "⭐ 4.8"},
-    {"id": "emily", "nome": "👩‍🏫 Emily Parker", "especialidade": "Preparatório TOEFL", "rating": "⭐ 5.0"},
-    {"id": "david", "nome": "🧑‍💻 David Chen", "especialidade": "Inglês para Viagem", "rating": "⭐ 4.7"},
+    {"id": "joab", "nome": "👨‍🏫 Professor Joab", "especialidade": "Inglês para Conversação", "rating": "⭐ 5.0"},
 ]
 
 PLANOS = [
@@ -59,8 +56,8 @@ PLANOS = [
 ]
 
 AULAS_MOCK = [
-    {"data": "20/06 - 19:00", "professor": "Sarah Johnson", "status": "✅ Confirmada"},
-    {"data": "22/06 - 14:00", "professor": "Michael Torres", "status": "⏳ Aguardando"},
+    {"data": "20/06 - 19:00", "professor": "Professor Joab", "status": "✅ Confirmada"},
+    {"data": "22/06 - 14:00", "professor": "Professor Joab", "status": "⏳ Aguardando"},
 ]
 
 # ---------- KEYBOARDS ----------

@@ -1,94 +1,106 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Entrar — EnglishFlow</title>
-  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <style>
-    :root { --bg: #0F172A; --card: #1E293B; --text: #F1F5F9; --soft: #94A3B8; --primary: #3390EC; --border: #334155; --muted: #64748B; }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; align-items: center; justify-content: center; -webkit-font-smoothing: antialiased; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 1.5rem; padding: 3rem 2rem; width: 100%; max-width: 420px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-    .logo { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
-    .sub { color: var(--soft); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.6; }
-    input { width: 100%; padding: 0.9rem 1rem; text-align: center; font-size: 1.3rem; text-transform: uppercase; font-family: 'Space Grotesk', monospace; letter-spacing: 3px; background: var(--bg); border: 1.5px solid var(--border); border-radius: 0.75rem; color: var(--text); margin-bottom: 1rem; transition: border-color .2s; }
-    input:focus { border-color: var(--primary); outline: none; }
-    input::placeholder { color: var(--muted); font-size: 0.8rem; letter-spacing: 2px; }
-    button { width: 100%; padding: 0.9rem; background: var(--primary); color: #fff; border: none; border-radius: 2rem; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; }
-    button:hover { background: #2A7DD4; transform: translateY(-1px); box-shadow: 0 4px 15px rgba(51,144,236,0.4); }
-    button:disabled { opacity: 0.6; cursor: not-allowed; }
-    .error { color: #DC2626; font-size: 0.85rem; margin-bottom: 1rem; display: none; }
-    .back { display: block; margin-top: 1.5rem; color: var(--soft); font-size: 0.85rem; text-decoration: none; }
-    .back:hover { color: var(--primary); }
-    .spinner { display: none; width: 20px; height: 20px; border: 2px solid #fff; border-top-color: transparent; border-radius: 50%; animation: spin 0.6s linear infinite; margin: 0 auto; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Inglês em Fronteiras</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 </head>
-<body>
-  <div class="card">
-    <div class="logo">💬</div>
-    <h1>Acessar Painel</h1>
-    <p class="sub">Digite o codigo de acesso que voce recebeu no Telegram para entrar no seu painel de estudos.</p>
-    <p class="error" id="error"></p>
-    <form id="loginForm">
-      <input type="text" id="code" placeholder="EX: A1B2C3D4" maxlength="8" required autofocus>
-      <button type="submit" id="submitBtn">
-        <span id="btnText">Entrar no painel</span>
-        <div class="spinner" id="spinner"></div>
-      </button>
-    </form>
-    <a href="/" class="back">← Voltar para o site</a>
-  </div>
+<body class="auth-page">
 
-  <script>
-    const SB_URL = 'https://rrfnfqlijjirxonhtpde.supabase.co';
-    const SB_KEY = 'sb_publishable_QeFafO_4Bvz81jVsLO05ug_i42WClL6';
-    const sb = supabase.createClient(SB_URL, SB_KEY);
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="index.html" class="back-home">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Voltar para o site
+                </a>
+                <h1 class="auth-title">Acessar Painel</h1>
+                <p class="auth-subtitle">Digite o codigo de acesso que voce recebeu no Telegram</p>
+            </div>
 
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const code = document.getElementById('code').value.trim().toUpperCase();
-      const errorEl = document.getElementById('error');
-      const btnText = document.getElementById('btnText');
-      const spinner = document.getElementById('spinner');
-      const submitBtn = document.getElementById('submitBtn');
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="accessCode">Codigo de Acesso</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M7 11V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7V11" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <input type="text" id="accessCode" placeholder="EX: A1B2C3D4" maxlength="8" required autofocus style="text-transform:uppercase;letter-spacing:2px;text-align:center;">
+                    </div>
+                </div>
 
-      if (!code) return;
+                <p class="error-message" id="loginError">Codigo invalido. Verifique e tente novamente.</p>
 
-      btnText.style.display = 'none';
-      spinner.style.display = 'inline-block';
-      submitBtn.disabled = true;
-      errorEl.style.display = 'none';
+                <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+                    <span id="btnText">Entrar no painel</span>
+                    <div class="spinner" id="spinner" style="display:none;width:20px;height:20px;"></div>
+                </button>
 
-      try {
-        const { data, error } = await sb
-          .from('users')
-          .select('id, name, plan, access_code, is_staff, created_at')
-          .eq('access_code', code)
-          .eq('active', true)
-          .single();
+                <div class="auth-divider">
+                    <span>ou</span>
+                </div>
 
-        if (error || !data) {
-          errorEl.textContent = error ? error.message : 'Codigo invalido. Verifique e tente novamente.';
-          errorEl.style.display = 'block';
-        } else {
-          // Salvar sessao
-          localStorage.setItem('ef_user', JSON.stringify(data));
-          window.location.href = '/painel';
-        }
-      } catch (err) {
-        errorEl.textContent = 'Erro ao conectar. Tente novamente.';
-        errorEl.style.display = 'block';
-      } finally {
-        btnText.style.display = 'inline';
-        spinner.style.display = 'none';
-        submitBtn.disabled = false;
-      }
-    });
-  </script>
+                <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="btn btn-outline btn-block">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.643.135-.953l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+                    </svg>
+                    Acessar via Telegram
+                </a>
+            </form>
+
+            <div class="auth-footer">
+                <p>Nao tem um codigo? <a href="https://t.me/inglesemfronteiras_bot" target="_blank">Fale com o bot</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SB_URL = 'https://rrfnfqlijjirxonhtpde.supabase.co';
+        const SB_KEY = 'sb_publishable_QeFafO_4Bvz81jVsLO05ug_i42WClL6';
+        const sb = supabase.createClient(SB_URL, SB_KEY);
+
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const code = document.getElementById('accessCode').value.trim().toUpperCase();
+            const errorEl = document.getElementById('loginError');
+            const btnText = document.getElementById('btnText');
+            const spinner = document.getElementById('spinner');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (!code) return;
+            btnText.style.display = 'none';
+            spinner.style.display = 'block';
+            submitBtn.disabled = true;
+            errorEl.classList.remove('show');
+
+            try {
+                const { data, error } = await sb
+                    .from('users')
+                    .select('id, name, plan, access_code, is_staff, created_at')
+                    .eq('access_code', code)
+                    .eq('active', true)
+                    .single();
+
+                if (error || !data) {
+                    errorEl.classList.add('show');
+                } else {
+                    localStorage.setItem('ef_user', JSON.stringify(data));
+                    window.location.href = '/painel';
+                }
+            } catch (err) {
+                errorEl.classList.add('show');
+            } finally {
+                btnText.style.display = 'inline';
+                spinner.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
 </body>
 </html>

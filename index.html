@@ -1,544 +1,159 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EnglishFlow — Seu professor nativo no Telegram</title>
-  <meta name="description" content="Aprenda inglês com professores americanos direto pelo Telegram. Agende seu horário e comece a conversar em 5 minutos. Aula teste grátis!">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="EnglishFlow — Seu professor nativo no Telegram">
-  <meta property="og:description" content="Aprenda inglês com professores americanos direto pelo Telegram. Agende seu horário e comece a conversar em 5 minutos.">
-  <meta property="og:image" content="https://inglesemfronteiras.vercel.app/assets/img/og-image.webp">
-  <meta property="og:url" content="https://inglesemfronteiras.vercel.app">
-  <meta property="og:locale" content="pt_BR">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="EnglishFlow — Seu professor nativo no Telegram">
-  <meta name="twitter:description" content="Aprenda inglês com professores americanos direto pelo Telegram. Aula teste grátis!">
-  <meta name="twitter:image" content="https://inglesemfronteiras.vercel.app/assets/img/og-image.webp">
-
-  <!-- PWA / Mobile -->
-  <meta name="theme-color" content="#3390EC">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0F172A">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="EnglishFlow">
-  <link rel="manifest" href="assets/img/site.webmanifest">
-
-  <!-- Favicons -->
-  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
-  <link rel="apple-touch-icon" href="assets/img/favicon.svg">
-
-  <!-- Fonts (self-hosted fallback via CDN during dev) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="assets/css/style.css">
-
-  <!-- JSON-LD Schema.org -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "EnglishFlow - Inglês com Professores Nativos",
-    "description": "Curso de inglês com professores americanos nativos via Telegram. Aulas particulares e em grupo com agendamento flexível.",
-    "provider": {
-      "@type": "Organization",
-      "name": "EnglishFlow",
-      "url": "https://inglesemfronteiras.vercel.app"
-    },
-    "inLanguage": ["pt-BR", "en-US"],
-    "educationalLevel": "Beginner to Advanced",
-    "hasCourseInstance": [
-      {
-        "@type": "CourseInstance",
-        "name": "Plano Básico",
-        "description": "4 aulas por mês em grupo de 3 alunos",
-        "courseMode": "Online"
-      },
-      {
-        "@type": "CourseInstance",
-        "name": "Plano Pro",
-        "description": "8 aulas por mês em grupo de 3 alunos",
-        "courseMode": "Online"
-      },
-      {
-        "@type": "CourseInstance",
-        "name": "Plano Premium",
-        "description": "12 aulas individuais por mês",
-        "courseMode": "Online"
-      }
-    ]
-  }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inglês em Fronteiras | Aprenda Inglês no Telegram</title>
+    <meta name="description" content="Aprenda inglês de forma prática e moderna diretamente no Telegram. Aulas personalizadas com o professor Joab.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
 </head>
 <body>
 
-  <!-- ========== HEADER ========== -->
-  <header class="header" id="header" role="banner">
-    <nav class="header__nav" role="navigation" aria-label="Navegação principal">
-      <a href="#" class="header__logo" aria-label="EnglishFlow — Ir para o topo">
-        <span class="header__logo-icon">💬</span>
-        <span class="header__logo-text">EnglishFlow</span>
-      </a>
-      <div class="header__actions">
-        <a href="login.html" class="btn btn--outline btn--sm" style="margin-right:0.5rem;">🔐 Painel</a>
-        <button class="header__theme-toggle" id="themeToggle" aria-label="Alternar tema claro/escuro" title="Alternar tema">
-          <span class="theme-toggle__icon theme-toggle__icon--light">☀️</span>
-          <span class="theme-toggle__icon theme-toggle__icon--dark">🌙</span>
-        </button>
-        <a href="https://t.me/inglesemfronteiras_bot" class="btn btn--telegram btn--sm header__cta" target="_blank" rel="noopener" aria-label="Abrir EnglishFlow no Telegram">
-          <span class="btn__icon">💬</span>
-          <span class="btn__label">Abrir no Telegram</span>
-        </a>
-      </div>
-    </nav>
-  </header>
-
-  <!-- ========== MAIN CONTENT ========== -->
-  <main id="main-content">
-
-    <!-- HERO -->
-    <section class="hero" id="hero" aria-labelledby="hero-headline">
-      <div class="hero__bg-particles" id="heroParticles" aria-hidden="true"></div>
-      <div class="hero__content">
-        <div class="hero__badge" role="status" aria-live="polite">
-          <span class="badge__dot badge__dot--pulse"></span>
-          <span class="badge__counter" id="heroCounter">+10 mil</span>
-          <span class="badge__text">aulas realizadas*</span>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Inglês<span>emFronteiras</span></a>
+            <nav class="nav-links">
+                <a href="#como-funciona">Como Funciona</a>
+                <a href="#professor">Professor</a>
+                <a href="#planos">Planos</a>
+            </nav>
+            <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="btn btn-primary">Acessar o Bot</a>
         </div>
-        <h1 class="hero__headline" id="hero-headline">
-          Seu professor nativo.<br>No Telegram. Em 5 minutos.
-        </h1>
-        <p class="hero__subhead">
-          Aprenda inglês conversando com americanos de verdade — sem apps novos, sem burocracia, sem desculpas.
-        </p>
-        <div class="hero__cta-group">
-          <a href="https://t.me/inglesemfronteiras_bot" class="btn btn--telegram btn--lg hero__cta-primary" target="_blank" rel="noopener">
-            <span class="btn__icon">💬</span>
-            Quero começar agora
-          </a>
-          <a href="#como-funciona" class="btn btn--outline hero__cta-secondary">
-            Como funciona?
-          </a>
-        </div>
-        <p class="hero__disclaimer">* Valores ilustrativos. Resultados reais variam conforme dedicação do aluno.</p>
+    </header>
 
-        <!-- Chat Mock -->
-        <div class="hero__chat-mock" aria-hidden="true">
-          <div class="chat-mock__bubble chat-mock__bubble--left">
-            <div class="chat-mock__avatar">👩‍🏫</div>
-            <div class="chat-mock__text">
-              <span class="chat-mock__name">Sarah J.</span>
-              <p>Hi there! Ready to practice your English today? 😊</p>
-              <span class="chat-mock__time">10:01 ✓✓</span>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-text">
+                <span class="badge">🚀 Nova geração de ensino</span>
+                <h1>Domine o Inglês direto no seu <span class="highlight">Telegram</span>.</h1>
+                <p>Esqueça plataformas complexas e chatas. Aprenda com o Professor Joab através de mensagens, áudios e aulas ao vivo onde você já está. Simples, rápido e eficaz.</p>
+                <div class="hero-cta">
+                    <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="btn btn-primary btn-lg">Começar Agora /start</a>
+                    <a href="#planos" class="btn btn-outline btn-lg">Ver Planos</a>
+                </div>
             </div>
-          </div>
-          <div class="chat-mock__bubble chat-mock__bubble--right">
-            <div class="chat-mock__text">
-              <p>Yes! Let's do it! 🇺🇸</p>
-              <span class="chat-mock__time">10:01 ✓✓</span>
+            <div class="hero-image">
+                <!-- Imagem conceitual fornecida -->
+                <img src="https://z-cdn-media.chatglm.cn/files/5fee3c71-f105-4995-b032-8ec4da597301.png?auth_key=1881811952-34c65e75672947179ed1e0806c3c3375-0-a2abe4c96011a601ee90c74514605579" alt="Aprenda inglês e viaje o mundo">
             </div>
-          </div>
-          <div class="chat-mock__bubble chat-mock__bubble--left">
-            <div class="chat-mock__avatar">👩‍🏫</div>
-            <div class="chat-mock__text">
-              <span class="chat-mock__name">Sarah J.</span>
-              <p>Awesome! Let's talk about your weekend plans...</p>
-              <span class="chat-mock__time">10:02 ✓✓</span>
-            </div>
-          </div>
-          <div class="chat-mock__typing">
-            <span>Sarah is typing</span>
-            <span class="chat-mock__dots"><span></span><span></span><span></span></span>
-          </div>
         </div>
-      </div>
     </section>
 
-    <!-- CHAT DEMO -->
-    <section class="chat-demo" id="chat-demo" aria-labelledby="chat-demo-title">
-      <div class="chat-demo__wrapper">
-        <h2 class="section__title" id="chat-demo-title">Tire suas dúvidas agora 💬</h2>
-        <p class="section__subtitle">Pergunte o que quiser — simulamos uma conversa real com nosso time.</p>
-        <div class="chat-demo__window" role="log" aria-live="polite" aria-label="Demonstração de chat EnglishFlow">
-          <div class="chat-demo__messages" id="chatMessages" aria-label="Mensagens do chat">
-            <div class="chat-msg chat-msg--bot">
-              <div class="chat-msg__avatar">🤖</div>
-              <div class="chat-msg__body">
-                <p>Olá! Sou o assistente virtual da EnglishFlow. Como posso te ajudar? 😊</p>
-                <span class="chat-msg__time">Agora</span>
-              </div>
+    <!-- Como Funciona -->
+    <section id="como-funciona" class="section">
+        <div class="container">
+            <h2 class="section-title">Como <span class="highlight">funciona</span>?</h2>
+            <p class="section-subtitle">Aprender inglês nunca foi tão integrado ao seu dia a dia.</p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">💬</div>
+                    <h3>1. Inicie o Bot</h3>
+                    <p>Clique em "Acessar o Bot" e digite /start no Telegram. O assistente virtual vai te guiar.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📅</div>
+                    <h3>2. Escolha seu Plano</h3>
+                    <p>Selecione o plano que cabe no seu bolso e agende suas aulas diretamente pelo chat.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>3. Aprenda com o Joab</h3>
+                    <p>Receba materiais, tire dúvidas e faça aulas práticas. O inglês fluente está a uma mensagem de distância.</p>
+                </div>
             </div>
-          </div>
-          <div class="chat-demo__suggestions" id="chatSuggestions" role="group" aria-label="Perguntas sugeridas">
-            <button class="chat-suggestion" data-question="Como funcionam as aulas?">Como funcionam as aulas?</button>
-            <button class="chat-suggestion" data-question="Quanto custa?">Quanto custa?</button>
-            <button class="chat-suggestion" data-question="Os professores são nativos?">Os professores são nativos?</button>
-            <button class="chat-suggestion" data-question="Posso fazer uma aula teste?">Posso fazer uma aula teste?</button>
-            <button class="chat-suggestion" data-question="Qual o horário das aulas?">Qual o horário das aulas?</button>
-          </div>
-          <div class="chat-demo__input-group">
-            <input type="text" class="chat-demo__input" id="chatInput" placeholder="Digite sua pergunta..." aria-label="Digite sua pergunta" maxlength="200">
-            <button class="chat-demo__send" id="chatSend" aria-label="Enviar mensagem">
-              <span>➤</span>
-            </button>
-          </div>
         </div>
-        <p class="hero__disclaimer">Demonstração interativa. Para falar com professores reais, acesse o Telegram.</p>
-      </div>
     </section>
 
-    <!-- PROFESSORES -->
-    <section class="professores" id="professores" aria-labelledby="professores-title">
-      <h2 class="section__title" id="professores-title">Conheça seus professores 🇺🇸</h2>
-      <p class="section__subtitle">Todos nativos, experientes e prontos pra te ajudar a destravar o inglês.</p>
-      <div class="professores__grid" role="list">
-        <article class="prof-card" role="listitem">
-          <div class="prof-card__avatar">
-            <span class="prof-card__emoji">👩‍💼</span>
-            <span class="prof-card__online" aria-label="Online"></span>
-            <span class="prof-card__flag">🇺🇸</span>
-          </div>
-          <div class="prof-card__info">
-            <h3 class="prof-card__name">Sarah Johnson</h3>
-            <p class="prof-card__specialty">Business English</p>
-            <div class="prof-card__rating" aria-label="Avaliação 4.9 de 5 estrelas">
-              <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
-              <span class="prof-card__rating-num">4.9</span>
+    <!-- Professor Section -->
+    <section id="professor" class="section professor-section">
+        <div class="container professor-container">
+            <div class="professor-img">
+                <!-- Foto do Professor Joab -->
+                <img src="https://z-cdn-media.chatglm.cn/files/3e082bc9-e8cb-4553-9379-47b1aeaae03f.png?auth_key=1881811952-a15d0eeb3e224620a455a32bb74d443e-0-ddc999086dab038ace9de46c0f2b55a5" alt="Professor Joab">
             </div>
-            <p class="prof-card__last-msg">"Let's close that deal! 💼"</p>
-            <span class="prof-card__time">Online agora</span>
-          </div>
-        </article>
-        <article class="prof-card" role="listitem">
-          <div class="prof-card__avatar">
-            <span class="prof-card__emoji">🧔</span>
-            <span class="prof-card__online" aria-label="Online"></span>
-            <span class="prof-card__flag">🇺🇸</span>
-          </div>
-          <div class="prof-card__info">
-            <h3 class="prof-card__name">Michael Torres</h3>
-            <p class="prof-card__specialty">Conversação</p>
-            <div class="prof-card__rating" aria-label="Avaliação 4.8 de 5 estrelas">
-              <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
-              <span class="prof-card__rating-num">4.8</span>
+            <div class="professor-info">
+                <span class="badge">Seu Mentor</span>
+                <h2>Professor <span class="highlight">Joab</span></h2>
+                <p>"I'm an ENGLISH TEACHER. What's your superpower?"</p>
+                <p>Com uma metodologia focada na prática real e conversação, o Professor Joab vai te tirar do "livro didático" e te colocar no mundo real. Aulas dinâmicas, suporte diário via Telegram e foco total na sua evolução.</p>
+                <ul class="professor-features">
+                    <li>✅ Aulas 100% personalizadas</li>
+                    <li>✅ Suporte direto com o professor</li>
+                    <li>✅ Material exclusivo no Telegram</li>
+                </ul>
+                <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="btn btn-primary">Agendar aula experimental</a>
             </div>
-            <p class="prof-card__last-msg">"Small talk? I got you ☕"</p>
-            <span class="prof-card__time">Online agora</span>
-          </div>
-        </article>
-        <article class="prof-card" role="listitem">
-          <div class="prof-card__avatar">
-            <span class="prof-card__emoji">👩‍🏫</span>
-            <span class="prof-card__online prof-card__online--offline" aria-label="Offline"></span>
-            <span class="prof-card__flag">🇺🇸</span>
-          </div>
-          <div class="prof-card__info">
-            <h3 class="prof-card__name">Emily Parker</h3>
-            <p class="prof-card__specialty">Preparatório TOEFL</p>
-            <div class="prof-card__rating" aria-label="Avaliação 5.0 de 5 estrelas">
-              <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
-              <span class="prof-card__rating-num">5.0</span>
-            </div>
-            <p class="prof-card__last-msg">"Your score, my mission 📚"</p>
-            <span class="prof-card__time">Visto por último há 2h</span>
-          </div>
-        </article>
-        <article class="prof-card" role="listitem">
-          <div class="prof-card__avatar">
-            <span class="prof-card__emoji">🧑‍💻</span>
-            <span class="prof-card__online" aria-label="Online"></span>
-            <span class="prof-card__flag">🇺🇸</span>
-          </div>
-          <div class="prof-card__info">
-            <h3 class="prof-card__name">David Chen</h3>
-            <p class="prof-card__specialty">Inglês para Viagem</p>
-            <div class="prof-card__rating" aria-label="Avaliação 4.7 de 5 estrelas">
-              <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
-              <span class="prof-card__rating-num">4.7</span>
-            </div>
-            <p class="prof-card__last-msg">"Pack your bags, we're going! ✈️"</p>
-            <span class="prof-card__time">Online agora</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- COMO FUNCIONA -->
-    <section class="como-funciona" id="como-funciona" aria-labelledby="como-funciona-title">
-      <h2 class="section__title" id="como-funciona-title">Do sofá à fluência em 4 passos</h2>
-      <p class="section__subtitle">Simples como mandar uma mensagem. Literalmente.</p>
-      <div class="steps" role="list">
-        <div class="step" role="listitem">
-          <div class="step__bubble">
-            <div class="step__icon">1️⃣</div>
-            <h3 class="step__title">Escolha o professor</h3>
-            <p class="step__desc">Navegue pelos perfis e escolha quem combina mais com seu objetivo.</p>
-          </div>
-          <span class="step__time">10:00</span>
         </div>
-        <div class="step" role="listitem">
-          <div class="step__bubble">
-            <div class="step__icon">2️⃣</div>
-            <h3 class="step__title">Marque o horário</h3>
-            <p class="step__desc">Escolha o dia e horário que funcionam pra você. Sem enrolação.</p>
-          </div>
-          <span class="step__time">10:02</span>
+    </section>
+
+    <!-- Planos -->
+    <section id="planos" class="section">
+        <div class="container">
+            <h2 class="section-title">Escolha seu <span class="highlight">Plano</span></h2>
+            <p class="section-subtitle">Pague via PIX e libere o acesso instantaneamente pelo bot.</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Básico</h3>
+                    <div class="price">R$<span>30</span></div>
+                    <p>Por mês</p>
+                    <ul>
+                        <li>2 Aulas em grupo/mês</li>
+                        <li>Materiais em PDF</li>
+                        <li>Tira-dúvidas no grupo</li>
+                    </ul>
+                    <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="btn btn-outline">Assinar</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="tag">Mais Popular</div>
+                    <h3>Pro</h3>
+                    <div class="price">R$<span>55</span></div>
+                    <p>Por mês</p>
+                    <ul>
+                        <li>4 Aulas em grupo/mês</li>
+                        <li>Áudios de listening diários</li>
+                        <li>1 Aula privada/mês</li>
+                    </ul>
+                    <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="btn btn-primary">Assinar</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Premium</h3>
+                    <div class="price">R$<span>80</span></div>
+                    <p>Por mês</p>
+                    <ul>
+                        <li>Aulas ilimitadas em grupo</li>
+                        <li>2 Aulas privadas/mês</li>
+                        <li>Plano de estudo personalizado</li>
+                    </ul>
+                    <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="btn btn-outline">Assinar</a>
+                </div>
+            </div>
         </div>
-        <div class="step" role="listitem">
-          <div class="step__bubble">
-            <div class="step__icon">3️⃣</div>
-            <h3 class="step__title">Receba o link</h3>
-            <p class="step__desc">O link da aula chega direto no seu Telegram. É só clicar.</p>
-          </div>
-          <span class="step__time">10:03</span>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-final">
+        <div class="container">
+            <h2>Pronto para atravessar as fronteiras?</h2>
+            <p>Fale com o nosso bot agora mesmo e dê o primeiro passo para a fluência.</p>
+            <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="btn btn-light btn-lg">Ir para o Telegram</a>
         </div>
-        <div class="step" role="listitem">
-          <div class="step__bubble">
-            <div class="step__icon">4️⃣</div>
-            <h3 class="step__title">Converse 30 min</h3>
-            <p class="step__desc">Aula ao vivo com professor nativo. Fale, erre, aprenda, repita.</p>
-          </div>
-          <span class="step__time">10:30</span>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Inglês em Fronteiras. Todos os direitos reservados.</p>
+            <p><a href="/login" style="color: #888;">Login</a> | <a href="/admin" style="color: #888;">Admin</a></p>
         </div>
-      </div>
-    </section>
+    </footer>
 
-    <!-- PLANOS -->
-    <section class="planos" id="planos" aria-labelledby="planos-title">
-      <h2 class="section__title" id="planos-title">Escolha seu plano</h2>
-      <p class="section__subtitle">Do básico ao intensivo. Sem contrato, sem pegadinha.</p>
-      <div class="planos__grid" role="list">
-        <article class="plano-card" role="listitem">
-          <div class="plano-card__header">
-            <h3 class="plano-card__name">Básico</h3>
-            <p class="plano-card__desc">Ideal pra quem está começando</p>
-          </div>
-          <div class="plano-card__price">
-            <span class="plano-card__currency">R$</span>
-            <span class="plano-card__value">30</span>
-            <span class="plano-card__period">/mês</span>
-          </div>
-          <ul class="plano-card__features">
-            <li>✓ 4 aulas por mês</li>
-            <li>✓ Grupos de 3 alunos</li>
-            <li>✓ Material incluso</li>
-            <li>✓ Aula teste grátis</li>
-            <li>✓ Suporte via Telegram</li>
-          </ul>
-          <a href="https://t.me/inglesemfronteiras_bot" class="btn btn--telegram btn--block plano-card__cta" target="_blank" rel="noopener">Começar grátis</a>
-        </article>
-        <article class="plano-card plano-card--featured" role="listitem">
-          <div class="plano-card__badge">Mais popular</div>
-          <div class="plano-card__header">
-            <h3 class="plano-card__name">Pro</h3>
-            <p class="plano-card__desc">Para acelerar de verdade</p>
-          </div>
-          <div class="plano-card__price">
-            <span class="plano-card__currency">R$</span>
-            <span class="plano-card__value">55</span>
-            <span class="plano-card__period">/mês</span>
-          </div>
-          <ul class="plano-card__features">
-            <li>✓ 8 aulas por mês</li>
-            <li>✓ Grupos de 3 alunos</li>
-            <li>✓ Material incluso</li>
-            <li>✓ Aula teste grátis</li>
-            <li>✓ Suporte prioritário</li>
-            <li>✓ Certificado digital</li>
-          </ul>
-          <a href="https://t.me/inglesemfronteiras_bot" class="btn btn--telegram btn--block plano-card__cta" target="_blank" rel="noopener">Começar grátis</a>
-        </article>
-        <article class="plano-card" role="listitem">
-          <div class="plano-card__header">
-            <h3 class="plano-card__name">Premium</h3>
-            <p class="plano-card__desc">Imersão total individual</p>
-          </div>
-          <div class="plano-card__price">
-            <span class="plano-card__currency">R$</span>
-            <span class="plano-card__value">80</span>
-            <span class="plano-card__period">/mês</span>
-          </div>
-          <ul class="plano-card__features">
-            <li>✓ 12 aulas por mês</li>
-            <li>✓ Aulas individuais</li>
-            <li>✓ Material exclusivo</li>
-            <li>✓ Aula teste grátis</li>
-            <li>✓ Suporte VIP 24h</li>
-            <li>✓ Certificado digital</li>
-            <li>✓ Plano de estudos personalizado</li>
-          </ul>
-          <a href="https://t.me/inglesemfronteiras_bot" class="btn btn--telegram btn--block plano-card__cta" target="_blank" rel="noopener">Começar grátis</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- DEPOIMENTOS -->
-    <section class="depoimentos" id="depoimentos" aria-labelledby="depoimentos-title">
-      <h2 class="section__title" id="depoimentos-title">Quem já está falando inglês 🇺🇸</h2>
-      <p class="section__subtitle">Histórias reais de quem destravou o inglês com a EnglishFlow.*</p>
-      <div class="depoimentos__feed" role="feed" aria-label="Depoimentos de alunos" id="depoFeed">
-        <article class="depo-card" role="article" aria-label="Depoimento de Lucas M.">
-          <div class="depo-card__header">
-            <div class="depo-card__avatar">👨‍💻</div>
-            <div class="depo-card__meta">
-              <strong class="depo-card__name">Lucas M.</strong>
-              <span class="depo-card__location">São Paulo, SP</span>
-            </div>
-            <span class="depo-card__stars">⭐⭐⭐⭐⭐</span>
-          </div>
-          <p class="depo-card__text">"Perdi o medo de falar! Sarah é incrível. Agora me sinto confiante em reuniões."</p>
-          <span class="depo-card__time">10:45 ✓✓</span>
-        </article>
-        <article class="depo-card" role="article" aria-label="Depoimento de Ana C.">
-          <div class="depo-card__header">
-            <div class="depo-card__avatar">👩‍🎓</div>
-            <div class="depo-card__meta">
-              <strong class="depo-card__name">Ana C.</strong>
-              <span class="depo-card__location">Rio de Janeiro, RJ</span>
-            </div>
-            <span class="depo-card__stars">⭐⭐⭐⭐⭐</span>
-          </div>
-          <p class="depo-card__text">"Em 2 meses já estou viajando e me virando sozinha. O método do Telegram é genial."</p>
-          <span class="depo-card__time">11:20 ✓✓</span>
-        </article>
-        <article class="depo-card" role="article" aria-label="Depoimento de Pedro S.">
-          <div class="depo-card__header">
-            <div class="depo-card__avatar">👨‍🔧</div>
-            <div class="depo-card__meta">
-              <strong class="depo-card__name">Pedro S.</strong>
-              <span class="depo-card__location">Belo Horizonte, MG</span>
-            </div>
-            <span class="depo-card__stars">⭐⭐⭐⭐⭐</span>
-          </div>
-          <p class="depo-card__text">"O Michael me ajudou a passar na entrevista em inglês. Consegui o emprego!"</p>
-          <span class="depo-card__time">14:05 ✓✓</span>
-        </article>
-        <article class="depo-card" role="article" aria-label="Depoimento de Carla R.">
-          <div class="depo-card__header">
-            <div class="depo-card__avatar">👩‍💼</div>
-            <div class="depo-card__meta">
-              <strong class="depo-card__name">Carla R.</strong>
-              <span class="depo-card__location">Salvador, BA</span>
-            </div>
-            <span class="depo-card__stars">⭐⭐⭐⭐⭐</span>
-          </div>
-          <p class="depo-card__text">"Aulas no Telegram são tão práticas. Zero burocracia, só aprendizado."</p>
-          <span class="depo-card__time">16:30 ✓✓</span>
-        </article>
-      </div>
-      <p class="hero__disclaimer">* Depoimentos ilustrativos baseados na experiência de alunos reais.</p>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq" id="faq" aria-labelledby="faq-title">
-      <h2 class="section__title" id="faq-title">Dúvidas? Pergunta aí 🔍</h2>
-      <p class="section__subtitle">Respostas rápidas, estilo chat. Sem blá-blá-blá.</p>
-      <div class="faq__search">
-        <input type="text" class="faq__search-input" id="faqSearch" placeholder="Buscar pergunta..." aria-label="Buscar nas perguntas frequentes">
-        <span class="faq__search-icon">🔍</span>
-      </div>
-      <div class="faq__list" role="list" id="faqList">
-        <details class="faq-item" role="listitem">
-          <summary class="faq-item__question">Como funciona a aula pelo Telegram?</summary>
-          <div class="faq-item__answer">
-            <p>Você agenda um horário, recebe o link e conversa diretamente com o professor nativo por mensagem de voz, chamada ou chat. Simples como mandar um áudio no WhatsApp.</p>
-          </div>
-        </details>
-        <details class="faq-item" role="listitem">
-          <summary class="faq-item__question">Preciso instalar algum app?</summary>
-          <div class="faq-item__answer">
-            <p>Só o Telegram, que você provavelmente já tem no celular. Nada de Zoom, Meet, Teams ou plataformas complicadas.</p>
-          </div>
-        </details>
-        <details class="faq-item" role="listitem">
-          <summary class="faq-item__question">Os professores são nativos mesmo?</summary>
-          <div class="faq-item__answer">
-            <p>Sim! Todos os nossos professores são americanos, com formação universitária e experiência comprovada no ensino de inglês para brasileiros.</p>
-          </div>
-        </details>
-        <details class="faq-item" role="listitem">
-          <summary class="faq-item__question">Posso reagendar uma aula?</summary>
-          <div class="faq-item__answer">
-            <p>Claro! Basta avisar com 12 horas de antecedência que remarcamos sem custo adicional. Flexibilidade total.</p>
-          </div>
-        </details>
-        <details class="faq-item" role="listitem">
-          <summary class="faq-item__question">Tem certificado?</summary>
-          <div class="faq-item__answer">
-            <p>Sim! A cada nível concluído você recebe um certificado digital de proficiência EnglishFlow, reconhecido por nossos alunos no mercado.</p>
-          </div>
-        </details>
-        <details class="faq-item" role="listitem">
-          <summary class="faq-item__question">Como faço o pagamento?</summary>
-          <div class="faq-item__answer">
-            <p>Via PIX, boleto ou cartão de crédito em até 12x. Simples, seguro e sem surpresas.</p>
-          </div>
-        </details>
-        <details class="faq-item" role="listitem">
-          <summary class="faq-item__question">Tem teste de nível?</summary>
-          <div class="faq-item__answer">
-            <p>Sim! Na primeira aula (que é gratuita), o professor avalia seu nível e monta um plano de estudos personalizado para você.</p>
-          </div>
-        </details>
-        <details class="faq-item" role="listitem">
-          <summary class="faq-item__question">E se eu não gostar?</summary>
-          <div class="faq-item__answer">
-            <p>A primeira aula é 100% gratuita. Se não gostar, você não paga nada. Simples assim. 😊</p>
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <!-- CTA FINAL -->
-    <section class="cta-final" id="cta-final" aria-labelledby="cta-final-title">
-      <div class="cta-final__bubble">
-        <h2 class="cta-final__title" id="cta-final-title">Tá esperando o quê? 🇺🇸</h2>
-        <p class="cta-final__text">Sua primeira aula é gratuita. Sem compromisso. Sem enrolação.</p>
-        <a href="https://t.me/inglesemfronteiras_bot" class="btn btn--telegram btn--lg cta-final__btn" target="_blank" rel="noopener">
-          <span class="btn__icon">💬</span>
-          Quero minha aula grátis
-        </a>
-        <p class="cta-final__stamp">✓✓ Enviado em 5 segundos</p>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="footer" role="contentinfo">
-    <div class="footer__content">
-      <div class="footer__brand">
-        <span class="footer__logo">💬 EnglishFlow</span>
-        <p class="footer__tagline">Feito para brasileiros que querem soar americanos. 🇧🇷→🇺🇸</p>
-      </div>
-      <nav class="footer__links" aria-label="Links do rodapé">
-        <a href="https://t.me/inglesemfronteiras_bot" target="_blank" rel="noopener">💬 Falar no Telegram</a>
-        <a href="#como-funciona">Como funciona</a>
-        <a href="#planos">Planos</a>
-        <a href="#faq">FAQ</a>
-        <a href="privacidade.html">Privacidade</a>
-      </nav>
-      <div class="footer__bottom">
-        <p>&copy; 2026 EnglishFlow. Todos os direitos reservados.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Floating Telegram Button -->
-  <a href="https://t.me/inglesemfronteiras_bot" class="fab" id="fab" target="_blank" rel="noopener" aria-label="Falar no Telegram" title="Falar no Telegram">
-    <span class="fab__icon">💬</span>
-    <span class="fab__pulse" aria-hidden="true"></span>
-  </a>
-
-  <!-- Scripts -->
-  <script src="assets/js/main.js" defer></script>
 </body>
 </html>

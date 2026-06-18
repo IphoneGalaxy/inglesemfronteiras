@@ -5,6 +5,9 @@ bot_telegram.txt
 chaves api.txt
 tokens versel e supabase.txt
 
+# Instrucoes internas
+arquivos e instruções para nova modificação/
+
 # Python
 __pycache__/
 *.py[cod]
