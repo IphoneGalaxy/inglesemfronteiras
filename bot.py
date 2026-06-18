@@ -6,6 +6,7 @@ Aprenda inglês com professores nativos via Telegram.
 
 import os
 import logging
+import uuid
 import requests
 from datetime import datetime, timedelta
 from io import BytesIO
@@ -15,13 +16,18 @@ from telegram.ext import (
     MessageHandler, filters, ContextTypes, ConversationHandler
 )
 from pix_utils import generate_pix_payload, generate_qr_bytes, get_plano_info
+from supabase import create_client
 
-# API do servidor Flask (para criar usuarios apos pagamento)
-API_BASE = os.environ.get("ENGLISHFLOW_API", "http://localhost:5000")
+# Supabase
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "https://rrfnfqlijjirxonhtpde.supabase.co")
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+sb = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+# Site URL
 SITE_URL = os.environ.get("ENGLISHFLOW_SITE", "https://iphonegalaxy.github.io/inglesemfronteiras")
 ADMIN_ID = int(os.environ.get("ENGLISHFLOW_ADMIN_ID", "392080710"))
 
-# Pagamentos pendentes de aprovacao (comprovante_id → dados)
+# Pagamentos pendentes
 pagamentos_pendentes = {}
 
 # ---------- CONFIG ----------
@@ -541,23 +547,21 @@ async def callback_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await query.edit_message_caption(caption="Pagamento nao encontrado (ja processado).")
             return
 
-        # Criar usuario via API
+        # Criar usuario no Supabase
         access_code = None
         try:
-            resp = requests.post(
-                f"{API_BASE}/api/create-user",
-                json={
-                    "telegram_id": pagto["telegram_id"],
-                    "name": pagto["user_name"],
-                    "plan": pagto["plano_id"]
-                },
-                timeout=10
-            )
-            if resp.ok:
-                data = resp.json()
-                access_code = data.get("access_code")
+            code = str(uuid.uuid4())[:8].upper()
+            r = sb.table('users').insert({
+                'telegram_id': pagto["telegram_id"],
+                'name': pagto["user_name"],
+                'plan': pagto["plano_id"],
+                'access_code': code
+            }).execute()
+            if r.data:
+                access_code = code
+                logger.info(f"Usuario Supabase criado: {pagto['user_name']} — code: {code}")
         except Exception as e:
-            logger.error(f"Erro API ao aprovar pagamento: {e}")
+            logger.error(f"Erro Supabase ao aprovar: {e}")
 
         # Atualiza mensagem do admin
         status = f"✅ APROVADO — Codigo: {access_code}" if access_code else "✅ APROVADO (servidor offline)"

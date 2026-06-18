@@ -1,7 +1,8 @@
-# Token do bot Telegram (NUNCA commitar)
+# Chaves e tokens (NUNCA commitar)
 .env
 bot_token.txt
 bot_telegram.txt
+chaves api.txt
 
 # Python
 __pycache__/
@@ -20,6 +21,9 @@ materiais/
 # QRs gerados
 assets/img/qr_pix_*.png
 assets/img/test_qr.png
+
+# Testes
+test_supabase.py
 
 # OS
 Thumbs.db

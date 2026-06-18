@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — EnglishFlow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <style>
+    :root { --bg: #0F172A; --card: #1E293B; --text: #F1F5F9; --soft: #94A3B8; --primary: #3390EC; --primary-light: rgba(51,144,236,0.1); --border: #334155; --muted: #64748B; --gold: #FFD700; --green: #22C55E; --danger: #DC2626; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+    .header { background: var(--card); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .header h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; }
+    .header a { color: var(--soft); text-decoration: none; font-size: 0.85rem; }
+    .header a:hover { color: var(--primary); }
+    .content { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .stat { background: var(--card); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem; text-align: center; }
+    .stat-val { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 2rem; color: var(--primary); }
+    .stat-lbl { font-size: 0.8rem; color: var(--soft); margin-top: 0.25rem; }
+
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem; margin-bottom: 1.5rem; }
+    .card h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; margin-bottom: 1rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 0.85rem; color: var(--soft); margin-bottom: 0.3rem; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.7rem 0.8rem; background: var(--bg); border: 1px solid var(--border); border-radius: 0.5rem; color: var(--text); font-size: 0.9rem; font-family: 'Inter', sans-serif; transition: border-color .2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary); outline: none; }
+    .form-row { display: flex; gap: 1rem; }
+    .form-row .form-group { flex: 1; }
+    .btn { padding: 0.7rem 2rem; background: var(--primary); color: #fff; border: none; border-radius: 1.5rem; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: all .2s; font-family: 'Inter', sans-serif; }
+    .btn:hover { background: #2A7DD4; }
+    .btn-del { background: transparent; color: var(--danger); border: 1px solid var(--danger); padding: 0.4rem 1rem; border-radius: 0.5rem; font-size: 0.8rem; cursor: pointer; }
+    .btn-del:hover { background: var(--danger); color: #fff; }
+    .mat-row { background: var(--card); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem 1.25rem; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .mat-info { flex: 1; }
+    .mat-title { font-weight: 600; font-size: 0.95rem; }
+    .mat-meta { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+    .badge { padding: 0.2rem 0.6rem; border-radius: 0.5rem; font-size: 0.7rem; font-weight: 600; display: inline-block; }
+    .badge-basico { background: rgba(51,144,236,0.15); color: #3390EC; }
+    .badge-pro { background: rgba(255,215,0,0.15); color: #FFD700; }
+    .badge-premium { background: rgba(220,38,38,0.15); color: #DC2626; }
+    .badge-todos { background: rgba(34,197,94,0.15); color: #22C55E; }
+
+    .login-box { max-width: 400px; margin: 5rem auto; background: var(--card); border: 1px solid var(--border); border-radius: 1.5rem; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+    .login-box h1 { font-family: 'Space Grotesk', sans-serif; margin-bottom: 0.5rem; }
+    .login-box input { width: 100%; padding: 0.8rem 1rem; background: var(--bg); border: 1.5px solid var(--border); border-radius: 0.75rem; color: var(--text); font-size: 1rem; margin-bottom: 1rem; text-align: center; }
+    .login-box input:focus { border-color: var(--primary); outline: none; }
+    .error { color: var(--danger); font-size: 0.85rem; margin-bottom: 1rem; }
+    #app { display: none; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th { text-align: left; color: var(--soft); font-weight: 500; padding: 0.5rem; border-bottom: 1px solid var(--border); }
+    td { padding: 0.5rem; border-bottom: 1px solid var(--border); }
+    tr:last-child td { border-bottom: none; }
+  </style>
+</head>
+<body>
+  <!-- LOGIN -->
+  <div id="loginBox" class="login-box">
+    <h1>🔐 Admin EnglishFlow</h1>
+    <p style="color:var(--soft);font-size:0.85rem;margin-bottom:1.5rem;">Digite o codigo de acesso admin.</p>
+    <p class="error" id="loginError" style="display:none;"></p>
+    <input type="text" id="adminCode" placeholder="Codigo admin" autofocus>
+    <button class="btn" onclick="login()" style="width:100%;">Entrar</button>
+    <a href="/" style="display:block;margin-top:1rem;color:var(--soft);font-size:0.8rem;">← Site</a>
+  </div>
+
+  <!-- APP -->
+  <div id="app">
+    <header class="header">
+      <h1>🔐 Admin — EnglishFlow</h1>
+      <div style="display:flex;gap:1rem;">
+        <a href="/painel">Painel Aluno</a>
+        <a href="/">Site</a>
+        <a href="#" onclick="logout()">Sair</a>
+      </div>
+    </header>
+
+    <main class="content" id="mainContent"></main>
+  </div>
+
+  <script>
+    const SB_URL = 'https://rrfnfqlijjirxonhtpde.supabase.co';
+    const SB_KEY = 'sb_publishable_QeFafO_4Bvz81jVsLO05ug_i42WClL6';
+    const sb = supabase.createClient(SB_URL, SB_KEY);
+    let adminUser = null;
+
+    async function login() {
+      const code = document.getElementById('adminCode').value.trim().toUpperCase();
+      const err = document.getElementById('loginError');
+      err.style.display = 'none';
+      if (!code) return;
+
+      const { data } = await sb.from('users').select('*').eq('access_code', code).eq('is_staff', true).single();
+      if (!data) { err.textContent = 'Acesso negado.'; err.style.display = 'block'; return; }
+      adminUser = data;
+      document.getElementById('loginBox').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      loadDashboard();
+    }
+
+    async function loadDashboard() {
+      // Stats
+      const { count: totalUsers } = await sb.from('users').select('*', { count: 'exact', head: true });
+      const { count: totalMats } = await sb.from('materials').select('*', { count: 'exact', head: true });
+      const { count: pendPay } = await sb.from('payments').select('*', { count: 'exact', head: true }).eq('status', 'pending');
+      const { data: plans } = await sb.from('users').select('plan');
+      const planCounts = {};
+      (plans || []).forEach(p => planCounts[p.plan] = (planCounts[p.plan] || 0) + 1);
+
+      // Materials list
+      const { data: mats } = await sb.from('materials').select('*').order('created_at', { ascending: false });
+      // Users list
+      const { data: recentUsers } = await sb.from('users').select('*').order('created_at', { ascending: false }).limit(5);
+
+      document.getElementById('mainContent').innerHTML = `
+        <div class="stats">
+          <div class="stat"><div class="stat-val">${totalUsers || 0}</div><div class="stat-lbl">Alunos</div></div>
+          <div class="stat"><div class="stat-val">${totalMats || 0}</div><div class="stat-lbl">Materiais</div></div>
+          <div class="stat"><div class="stat-val">${pendPay || 0}</div><div class="stat-lbl">Pagtos pendentes</div></div>
+          <div class="stat"><div class="stat-val" style="color:var(--gold);">${Object.keys(planCounts).length}</div><div class="stat-lbl">Planos ativos</div></div>
+        </div>
+
+        <div class="card">
+          <h2>➕ Adicionar Material</h2>
+          <form id="uploadForm" enctype="multipart/form-data">
+            <div class="form-group"><label>Titulo</label><input type="text" id="matTitle" placeholder="Ex: Aula 1" required></div>
+            <div class="form-group"><label>Descricao</label><textarea id="matDesc" rows="2" placeholder="Breve descricao..."></textarea></div>
+            <div class="form-row">
+              <div class="form-group"><label>Tipo</label><select id="matType"><option value="pdf">PDF</option><option value="video">Video</option><option value="audio">Audio</option><option value="image">Imagem</option><option value="other">Outro</option></select></div>
+              <div class="form-group"><label>Plano</label><select id="matPlan"><option value="todos">Todos</option><option value="basico">Basico</option><option value="pro">Pro</option><option value="premium">Premium</option></select></div>
+            </div>
+            <div class="form-group"><label>Arquivo</label><input type="file" id="matFile" required></div>
+            <button type="submit" class="btn">Enviar Material</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h2>📚 Materiais (${totalMats || 0})</h2>
+          ${mats && mats.length ? mats.map(m => `
+            <div class="mat-row">
+              <div class="mat-info">
+                <div class="mat-title">${m.title}</div>
+                <div class="mat-meta"><span class="badge badge-${m.file_type}">${m.file_type.toUpperCase()}</span> Plano: <span class="badge badge-${m.plan_level}">${m.plan_level}</span> | ${(m.created_at||'').slice(0,10)}</div>
+              </div>
+              <button class="btn-del" onclick="delMat(${m.id})">Deletar</button>
+            </div>
+          `).join('') : '<p style="color:var(--soft);">Nenhum material.</p>'}
+        </div>
+
+        <div class="card">
+          <h2>🆕 Ultimos alunos</h2>
+          <table>
+            <tr><th>Nome</th><th>Plano</th><th>Codigo</th><th>Data</th></tr>
+            ${recentUsers && recentUsers.length ? recentUsers.map(u => `
+              <tr><td>${u.name}</td><td><span class="badge badge-${u.plan}">${u.plan.toUpperCase()}</span></td><td><code>${u.access_code}</code></td><td>${(u.created_at||'').slice(0,10)}</td></tr>
+            `).join('') : '<tr><td colspan="4" style="color:var(--soft);">Nenhum aluno.</td></tr>'}
+          </table>
+        </div>
+      `;
+
+      document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const title = document.getElementById('matTitle').value.trim();
+        const desc = document.getElementById('matDesc').value.trim();
+        const type = document.getElementById('matType').value;
+        const plan = document.getElementById('matPlan').value;
+        const file = document.getElementById('matFile').files[0];
+        if (!title || !file) return;
+
+        const filename = file.name;
+        const { error } = await sb.from('materials').insert({ title, description: desc, file_type: type, plan_level: plan, filename });
+        if (error) alert('Use o painel admin local para uploads: localhost:5000/admin');
+        if (!error) { loadDashboard(); }
+      });
+    }
+
+    async function delMat(id) { if (confirm('Deletar?')) { const { error } = await sb.from('materials').delete().eq('id', id); if (error) alert('Use o painel admin local: localhost:5000/admin'); else loadDashboard(); } }
+    function logout() { adminUser = null; document.getElementById('loginBox').style.display = 'block'; document.getElementById('app').style.display = 'none'; }
+  </script>
+</body>
+</html>
