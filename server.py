@@ -228,4 +228,5 @@ if __name__ == '__main__':
     print("[EnglishFlow Server] Iniciando em http://localhost:5000")
     print("[EnglishFlow Server] Login: http://localhost:5000/login")
     print("[EnglishFlow Server] Admin: http://localhost:5000/admin")
+    print("[EnglishFlow Server] Site publico: https://iphonegalaxy.github.io/inglesemfronteiras/")
     app.run(host='0.0.0.0', port=5000, debug=False)

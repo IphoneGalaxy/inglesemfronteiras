@@ -18,7 +18,7 @@ from pix_utils import generate_pix_payload, generate_qr_bytes, get_plano_info
 
 # API do servidor Flask (para criar usuarios apos pagamento)
 API_BASE = os.environ.get("ENGLISHFLOW_API", "http://localhost:5000")
-SITE_URL = os.environ.get("ENGLISHFLOW_SITE", "http://localhost:5000")
+SITE_URL = os.environ.get("ENGLISHFLOW_SITE", "https://iphonegalaxy.github.io/inglesemfronteiras")
 ADMIN_ID = int(os.environ.get("ENGLISHFLOW_ADMIN_ID", "392080710"))
 
 # Pagamentos pendentes de aprovacao (comprovante_id → dados)
