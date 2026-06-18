@@ -24,7 +24,7 @@ SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 sb = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # Site URL
-SITE_URL = os.environ.get("ENGLISHFLOW_SITE", "https://iphonegalaxy.github.io/inglesemfronteiras")
+SITE_URL = os.environ.get("ENGLISHFLOW_SITE", "https://inglesemfronteiras.vercel.app")
 ADMIN_ID = int(os.environ.get("ENGLISHFLOW_ADMIN_ID", "392080710"))
 
 # Pagamentos pendentes
