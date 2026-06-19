@@ -6,6 +6,7 @@
     { "source": "/login", "destination": "/login.html" },
     { "source": "/painel", "destination": "/painel.html" },
     { "source": "/certificado", "destination": "/certificado.html" },
-    { "source": "/materiais", "destination": "/materiais.html" }
+    { "source": "/materiais", "destination": "/materiais.html" },
+    { "source": "/aulas", "destination": "/aulas.html" }
   ]
 }

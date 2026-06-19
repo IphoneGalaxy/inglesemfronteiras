@@ -165,6 +165,8 @@
     left: 0;
     bottom: 0;
     z-index: 100;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .sidebar-header {
     margin-bottom: 32px;
@@ -180,7 +182,14 @@
     white-space: nowrap;
 }
 .logo-icon { font-size: 1.5rem; }
-.logo-text { font-family: 'Sora', sans-serif; font-weight: 800; color: white; font-size: 1.1rem; }
+.logo-text {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    color: white;
+    font-size: 1.1rem;
+    white-space: normal;
+    word-wrap: break-word;
+}
 .logo-text span { color: var(--primary); }
 .sidebar-nav { display: flex; flex-direction: column; gap: 4px; flex: 1; }
 .nav-item {

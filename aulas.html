@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Materiais | Inglês Sem Fronteiras</title>
+    <title>Minhas Aulas | Inglês Sem Fronteiras</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <style>
-        /* Ajuste rápido para o botão de tema no header */
         .theme-toggle {
             background: transparent;
             border: 1px solid var(--text-gray);
@@ -29,73 +28,66 @@
             border-color: var(--primary);
         }
         
-        /* Estilos para os cards de material */
-        .material-card {
+        .class-card {
             background: var(--bg-card);
             border: 1px solid #2A3B55;
             border-radius: 16px;
             padding: 24px;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-        }
-        .material-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        .material-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-        .icon-pdf { background: rgba(239, 68, 68, 0.2); color: #EF4444; }
-        .icon-audio { background: rgba(139, 92, 246, 0.2); color: #8B5CF6; }
-        .icon-video { background: rgba(59, 130, 246, 0.2); color: #3B82F6; }
-        
-        .material-info h3 {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-            color: var(--text-light);
-        }
-        .material-info p {
-            font-size: 0.9rem;
-            color: var(--text-gray);
+            justify-content: space-between;
             margin-bottom: 20px;
+            transition: all 0.3s ease;
         }
-        .material-btn {
-            display: block;
-            text-align: center;
+        .class-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .class-date {
             background: rgba(59, 130, 246, 0.1);
             color: var(--primary);
-            padding: 10px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: background 0.3s;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            min-width: 80px;
+            margin-right: 20px;
         }
-        .material-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
+        .class-date span { display: block; line-height: 1.2; }
+        .class-date .day { font-size: 1.8rem; font-weight: 800; font-family: 'Sora', sans-serif; }
+        .class-date .month { font-size: 0.9rem; text-transform: uppercase; font-weight: 600; }
         
-        .category-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.5rem;
+        .class-details { flex: 1; }
+        .class-details h3 { font-size: 1.2rem; margin-bottom: 5px; }
+        .class-details p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 8px; }
+        .class-meta { display: flex; gap: 15px; font-size: 0.85rem; color: var(--text-gray); }
+        .class-meta span { display: flex; align-items: center; gap: 5px; }
+        
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .status-upcoming { background: rgba(16, 185, 129, 0.2); color: #10B981; }
+        .status-completed { background: rgba(148, 163, 184, 0.2); color: #94A3B8; }
+        
+        .section-divider {
             margin: 40px 0 20px;
+            font-family: 'Sora', sans-serif;
+            font-size: 1.4rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            color: var(--text-light);
         }
-        .category-title:first-of-type { margin-top: 0; }
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #2A3B55;
+        }
     </style>
 </head>
 <body class="dashboard-page">
@@ -116,14 +108,7 @@
                     </svg>
                     <span>Início</span>
                 </a>
-                <a href="materiais.html" class="nav-item active">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                        <path d="M2 3H8C9.06087 3 10.0783 3.42143 10.8284 4.17157C11.5786 4.92172 12 5.93913 12 7V21C12 19.9391 11.5786 18.9217 10.8284 18.1716C10.0783 17.4214 9.06087 17 8 17H2V3Z" stroke="currentColor" stroke-width="2"/>
-                        <path d="M22 3H16C14.9391 3 13.9217 3.42143 13.1716 4.17157C12.4214 4.92172 12 5.93913 12 7V21C12 19.9391 12.4214 18.9217 13.1716 18.1716C13.9217 17.4214 14.9391 17 16 17H22V3Z" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                    <span>Materiais</span>
-                </a>
-                <a href="aulas.html" class="nav-item">
+                <a href="aulas.html" class="nav-item active">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
                         <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2"/>
@@ -131,6 +116,13 @@
                         <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/>
                     </svg>
                     <span>Minhas Aulas</span>
+                </a>
+                <a href="materiais.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M2 3H8C9.06087 3 10.0783 3.42143 10.8284 4.17157C11.5786 4.92172 12 5.93913 12 7V21C12 19.9391 11.5786 18.9217 10.8284 18.1716C10.0783 17.4214 9.06087 17 8 17H2V3Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M22 3H16C14.9391 3 13.9217 3.42143 13.1716 4.17157C12.4214 4.92172 12 5.93913 12 7V21C12 19.9391 12.4214 18.9217 13.1716 18.1716C13.9217 17.4214 14.9391 17 16 17H22V3Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>Materiais</span>
                 </a>
                 <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="nav-item">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -163,11 +155,10 @@
         <main class="main-content">
             <header class="content-header">
                 <div class="header-left">
-                    <h1>Central de Materiais 📚</h1>
-                    <p>Baixe seus PDFs, ouça os áudios e assista às videoaulas.</p>
+                    <h1>Minhas Aulas 📅</h1>
+                    <p>Gerencie seus agendamentos e acesse o histórico das suas aulas.</p>
                 </div>
                 <div class="header-right" style="display: flex; align-items: center;">
-                    <!-- Botão de Tema -->
                     <button class="theme-toggle" id="themeToggle" title="Alternar Tema">
                         <svg id="iconMoon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -189,99 +180,89 @@
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.643.135-.953l11.566-4.458c.538-.196 1.006.128.832.941z"/>
                         </svg>
-                        Abrir Telegram
+                        Agendar Nova Aula
                     </a>
                 </div>
             </header>
 
-            <!-- Materiais Grid -->
+            <!-- Próximas Aulas -->
             <section class="content-section">
-                <!-- Categoria 1: PDFs e Guias -->
-                <h2 class="category-title">📄 PDFs e Guias de Estudo</h2>
-                <div class="cards-grid">
-                    <div class="material-card">
-                        <div>
-                            <div class="material-icon icon-pdf">📄</div>
-                            <div class="material-info">
-                                <h3>Guia de Gramática Básica</h3>
-                                <p>Domine os tempos verbais mais usados no dia a dia. 24 páginas.</p>
-                            </div>
-                        </div>
-                        <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="material-btn">Acessar no Telegram</a>
+                <h2 class="section-divider">Próximas Aulas</h2>
+                
+                <div class="class-card">
+                    <div class="class-date">
+                        <span class="day">25</span>
+                        <span class="month">Jun</span>
                     </div>
-
-                    <div class="material-card">
-                        <div>
-                            <div class="material-icon icon-pdf">📄</div>
-                            <div class="material-info">
-                                <h3>100 Phrasal Verbs Essenciais</h3>
-                                <p>Lista completa com significados e exemplos práticos de uso.</p>
-                            </div>
+                    <div class="class-details">
+                        <h3>Conversation Practice</h3>
+                        <p>com Professor Joab</p>
+                        <div class="class-meta">
+                            <span>⏰ 19:00 - 20:00</span>
+                            <span>📍 Online (Telegram)</span>
                         </div>
-                        <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="material-btn">Acessar no Telegram</a>
                     </div>
-
-                    <div class="material-card">
-                        <div>
-                            <div class="material-icon icon-pdf">📄</div>
-                            <div class="material-info">
-                                <h3>E-book: English for Travelers</h3>
-                                <p>Frases prontas para viagens internacionais (aeroporto, hotel, restaurante).</p>
-                            </div>
-                        </div>
-                        <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="material-btn">Acessar no Telegram</a>
+                    <div class="class-actions">
+                        <span class="status-badge status-upcoming">Confirmada</span>
+                        <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="btn btn-primary btn-sm" style="margin-left: 15px;">Entrar</a>
                     </div>
                 </div>
 
-                <!-- Categoria 2: Áudios e Podcasts -->
-                <h2 class="category-title">🎧 Áudios e Listening</h2>
-                <div class="cards-grid">
-                    <div class="material-card">
-                        <div>
-                            <div class="material-icon icon-audio">🎧</div>
-                            <div class="material-info">
-                                <h3>Daily Vocab Áudio</h3>
-                                <p>Áudio matinal com 5 palavras novas e pronúncia correta.</p>
-                            </div>
-                        </div>
-                        <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="material-btn">Ouvir Áudio</a>
+                <div class="class-card">
+                    <div class="class-date">
+                        <span class="day">27</span>
+                        <span class="month">Jun</span>
                     </div>
-
-                    <div class="material-card">
-                        <div>
-                            <div class="material-icon icon-audio">🎧</div>
-                            <div class="material-info">
-                                <h3>Conversação Simulada</h3>
-                                <p>Áudio de diálogo em contexto real para prática de listening.</p>
-                            </div>
+                    <div class="class-details">
+                        <h3>Business English Workshop</h3>
+                        <p>com Professor Joab</p>
+                        <div class="class-meta">
+                            <span>⏰ 20:00 - 21:30</span>
+                            <span>📍 Online (Telegram)</span>
                         </div>
-                        <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="material-btn">Ouvir Áudio</a>
+                    </div>
+                    <div class="class-actions">
+                        <span class="status-badge status-upcoming">Confirmada</span>
+                        <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="btn btn-outline btn-sm" style="margin-left: 15px;">Reagendar</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Histórico -->
+            <section class="content-section">
+                <h2 class="section-divider">Histórico de Aulas</h2>
+                
+                <div class="class-card" style="opacity: 0.8;">
+                    <div class="class-date" style="background: rgba(148, 163, 184, 0.1); color: var(--text-gray);">
+                        <span class="day">18</span>
+                        <span class="month">Jun</span>
+                    </div>
+                    <div class="class-details">
+                        <h3>Grammar Review</h3>
+                        <p>com Professor Joab</p>
+                        <div class="class-meta">
+                            <span>⏰ 19:00 - 20:00</span>
+                        </div>
+                    </div>
+                    <div class="class-actions">
+                        <span class="status-badge status-completed">Concluída</span>
                     </div>
                 </div>
 
-                <!-- Categoria 3: Vídeos -->
-                <h2 class="category-title">📹 Vídeos e Aulas Práticas</h2>
-                <div class="cards-grid">
-                    <div class="material-card">
-                        <div>
-                            <div class="material-icon icon-video">📹</div>
-                            <div class="material-info">
-                                <h3>Pronúncia de Sons Difíceis</h3>
-                                <p>Vídeo explicando o "TH" e outros sons que travam os brasileiros.</p>
-                            </div>
-                        </div>
-                        <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="material-btn">Assistir Vídeo</a>
+                <div class="class-card" style="opacity: 0.8;">
+                    <div class="class-date" style="background: rgba(148, 163, 184, 0.1); color: var(--text-gray);">
+                        <span class="day">15</span>
+                        <span class="month">Jun</span>
                     </div>
-
-                    <div class="material-card">
-                        <div>
-                            <div class="material-icon icon-video">📹</div>
-                            <div class="material-info">
-                                <h3>Aula: Como pensar em Inglês</h3>
-                                <p>Técnica prática para parar de traduzir mentalmente.</p>
-                            </div>
+                    <div class="class-details">
+                        <h3>Listening Practice</h3>
+                        <p>com Professor Joab</p>
+                        <div class="class-meta">
+                            <span>⏰ 18:00 - 19:00</span>
                         </div>
-                        <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="material-btn">Assistir Vídeo</a>
+                    </div>
+                    <div class="class-actions">
+                        <span class="status-badge status-completed">Concluída</span>
                     </div>
                 </div>
             </section>
@@ -294,7 +275,6 @@
         const iconMoon = document.getElementById('iconMoon');
         const iconSun = document.getElementById('iconSun');
 
-        // Verifica a preferência salva
         if (localStorage.getItem('theme') === 'light') {
             document.body.classList.add('light-mode');
             iconMoon.style.display = 'none';
@@ -303,7 +283,6 @@
 
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
-            
             if (document.body.classList.contains('light-mode')) {
                 localStorage.setItem('theme', 'light');
                 iconMoon.style.display = 'none';
