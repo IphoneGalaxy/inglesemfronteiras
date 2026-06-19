@@ -155,6 +155,7 @@
 }
 .sidebar {
     width: 260px;
+    min-width: 250px;
     background: var(--bg-card);
     border-right: 1px solid #2A3B55;
     padding: 24px;
@@ -174,12 +175,15 @@
     overflow: hidden;
 }
 .sidebar-header .logo {
-    display: flex;
+    display: block;
     align-items: center;
     gap: 10px;
     text-decoration: none;
     font-size: 1.1rem;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    font-weight: 700;
 }
 .logo-icon { font-size: 1.5rem; }
 .logo-text {
@@ -187,8 +191,9 @@
     font-weight: 800;
     color: white;
     font-size: 1.1rem;
-    white-space: normal;
-    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
 }
 .logo-text span { color: var(--primary); }
 .sidebar-nav { display: flex; flex-direction: column; gap: 4px; flex: 1; }
