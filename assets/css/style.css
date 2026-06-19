@@ -381,3 +381,67 @@ body {
     .professor-img img { width: 100%; max-width: 300px; }
     .pricing-card.featured { transform: scale(1); }
 }
+
+/* ============================================================
+   LIGHT MODE
+   ============================================================ */
+body.light-mode {
+    --bg-dark: #F8FAFC;
+    --bg-card: #FFFFFF;
+    --text-light: #0F172A;
+    --text-gray: #475569;
+    --primary: #2563EB;
+    --primary-glow: #2563EB40;
+    --accent: #D97706;
+    --gradient: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+}
+body.light-mode .card,
+body.light-mode .pricing-card,
+body.light-mode .material-card {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border-color: #E2E8F0;
+}
+body.light-mode input,
+body.light-mode select,
+body.light-mode textarea {
+    color: var(--text-light);
+    background: var(--bg-card);
+    border-color: #CBD5E1;
+}
+body.light-mode input::placeholder,
+body.light-mode textarea::placeholder {
+    color: var(--text-gray);
+}
+body.light-mode .navbar {
+    background: rgba(248,250,252,0.85);
+    border-bottom-color: #E2E8F0;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    background: transparent;
+    border: 1px solid var(--text-gray);
+    color: var(--text-light);
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+}
+.theme-toggle:hover {
+    background: var(--bg-card);
+    border-color: var(--primary);
+}
+
+/* Contrast fixes for dark mode */
+.nav-item span { color: var(--text-gray); }
+.nav-item:hover span, .nav-item.active span { color: var(--text-light); }
+.admin-table th, .admin-table td { color: var(--text-light); }
+.form-group label { color: var(--text-light); }
+input, select, textarea { color: var(--text-light); background: var(--bg-dark); border: 1px solid #2A3B55; }
+input:focus, select:focus, textarea:focus { border-color: var(--primary); outline: none; }

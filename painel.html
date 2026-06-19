@@ -16,7 +16,7 @@
             <div class="sidebar-header">
                 <a href="index.html" class="logo">
                     <span class="logo-icon">🌐</span>
-                    <span class="logo-text">Inglês<span>SemFronteiras</span></span>
+                    <span class="logo-text">Inglês<span>Sem Fronteiras</span></span>
                 </a>
             </div>
             <nav class="sidebar-nav">
@@ -24,7 +24,7 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 9L12 2L21 9V20C21 20.5523 20.5523 21 20 21H15V14H9V21H4C3.44772 21 3 20.5523 3 20V9Z" stroke="currentColor" stroke-width="2"/></svg>
                     <span>Início</span>
                 </a>
-                <a href="#materiais" class="nav-item">
+                <a href="materiais.html" class="nav-item">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M2 3H8C9.06087 3 10.0783 3.42143 10.8284 4.17157C11.5786 4.92172 12 5.93913 12 7V21C12 19.9391 11.5786 18.9217 10.8284 18.1716C10.0783 17.4214 9.06087 17 8 17H2V3Z" stroke="currentColor" stroke-width="2"/><path d="M22 3H16C14.9391 3 13.9217 3.42143 13.1716 4.17157C12.4214 4.92172 12 5.93913 12 7V21C12 19.9391 12.4214 18.9217 13.1716 18.1716C13.9217 17.4214 14.9391 17 16 17H22V3Z" stroke="currentColor" stroke-width="2"/></svg>
                     <span>Materiais</span>
                 </a>
@@ -57,6 +57,7 @@
                     <p style="color:var(--text-gray);">Sua jornada de aprendizado</p>
                 </div>
                 <a href="https://t.me/inglesemfronteiras_bot" target="_blank" class="btn btn-primary">Abrir Telegram</a>
+                <button class="theme-toggle" id="themeToggle" title="Alternar Tema" style="margin-left:10px;"><svg id="iconMoon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg id="iconSun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button>
             </header>
 
             <!-- Progress -->
@@ -186,5 +187,6 @@
         function logout() { localStorage.removeItem('ef_user'); window.location.href = '/login'; }
         loadMaterials();
     </script>
+<script src="assets/js/theme.js"></script>
 </body>
 </html>

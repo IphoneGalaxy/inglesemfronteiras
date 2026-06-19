@@ -1,14 +1,11 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "*.html", "use": "@vercel/static" },
-    { "src": "assets/**", "use": "@vercel/static" },
-    { "src": "vercel.json", "use": "@vercel/static" }
-  ],
-  "routes": [
-    { "src": "/login", "dest": "/login.html" },
-    { "src": "/painel", "dest": "/painel.html" },
-    { "src": "/admin", "dest": "/admin.html" },
-    { "src": "/certificado", "dest": "/certificado.html" }
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/login", "destination": "/login.html" },
+    { "source": "/painel", "destination": "/painel.html" },
+    { "source": "/certificado", "destination": "/certificado.html" },
+    { "source": "/materiais", "destination": "/materiais.html" }
   ]
 }
