@@ -1,12 +1,13 @@
 # Chaves e tokens (NUNCA commitar)
 .env
+secrets/
 bot_token.txt
 bot_telegram.txt
 chaves api.txt
 tokens versel e supabase.txt
 
 # Instrucoes internas
-arquivos e instruções para nova modificação/
+instrucoes/
 
 # Python
 __pycache__/
@@ -15,7 +16,7 @@ __pycache__/
 dist/
 venv/
 
-# Database e dados de usuario
+# Database e dados de usuario (legado)
 instance/
 *.db
 
@@ -23,11 +24,11 @@ instance/
 materiais/
 
 # QRs gerados
-assets/img/qr_pix_*.png
+assets/img/qr/qr_pix_*.png
 assets/img/test_qr.png
 
-# Testes
-test_supabase.py
+# Legacy code
+legacy/
 
 # OS
 Thumbs.db
